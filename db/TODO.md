@@ -1,0 +1,1 @@
+# Task: Implement Detailed Users Table Schema&#10;&#10;## Steps:&#10;- [x] Step 1: Create enums for role and status&#10;- [x] Step 2: Create full `users` table with all fields, indexes, comments&#10;- [x] Step 3: Update sample INSERT statements&#10;- [ ] Step 4: Verify schema (user can run in DB)&#10;- [ ] Step 5: Mark complete

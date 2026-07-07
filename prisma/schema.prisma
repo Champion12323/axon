@@ -1,0 +1,761 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  extensions = [vector]  // pgvector extension
+}
+
+
+model User {
+  id                   String   @id @default(uuid())  // ✅ generates valid UUID
+  email                String   @unique
+  username             String   @unique
+  password_hash        String
+  full_name            String?
+  role                 String   // INFLUENCER, CLIENT
+  status               String   @default("pending") // pending, active, suspended
+  is_email_verified    Boolean  @default(false)
+  email_verified_at    DateTime?
+  avatar_url           String?
+  locked_until         DateTime?
+  failed_login_count   Int      @default(0)
+  last_login_at        DateTime?
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+
+  influencer_profiles  InfluencerProfile?
+  client_profiles      ClientProfile?
+
+  // ✅ Inverse relations required by YoutubeAccount and CampaignYoutubeVideo
+  youtubeAccounts YoutubeAccount[]
+  campaignYoutubeVideos CampaignYoutubeVideo[]
+
+
+  // Opposite relation fields needed by Campaign.brand, Application.influencer, Contract, and Payment relations
+  brandCampaigns      Campaign[]         @relation("BrandCampaigns")
+  influencerApplications Application[]   @relation("InfluencerApplications")
+
+  brandContracts      Contract[]        @relation("BrandContracts")
+  influencerContracts Contract[]       @relation("InfluencerContracts")
+
+  brandPayments       Payment[]        @relation("BrandPayments")
+  influencerPayments  Payment[]        @relation("InfluencerPayments")
+
+  brandConversations  Conversation[]   @relation("BrandConversations")
+  influencerConversations Conversation[] @relation("InfluencerConversations")
+
+  sentMessages        Message[] @relation("MessageSender")
+
+  notifications              Notification[]
+  notificationPreference    NotificationPreference?
+
+  // Saved Influencers
+  savedInfluencers SavedInfluencer[] @relation("SavedInfluencers")
+  
+  reviewsGiven    Review[] @relation("ReviewsGiven")
+  reviewsReceived Review[] @relation("ReviewsReceived")
+  averageRating   Float?   @default(0)
+  totalReviews    Int      @default(0)
+
+  avatar    String?   // public URL
+  avatarKey String?   // R2 key for deletion
+
+  invitesReceived CampaignInvite[] @relation("InvitesReceived")
+  invitesSent     CampaignInvite[] @relation("InvitesSent")
+
+  mobile String? // whatsapp invitation
+
+  influencerAudits InfluencerAudit[]
+  
+  refreshTokens RefreshToken[]
+
+  @@map("users")
+}
+
+
+ model InfluencerProfile {
+      id       String @id @default(cuid())
+      userId   String @unique
+      user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+      rating              Float? @default(0)
+      total_followers     Int?   @default(0)
+      platforms           Json?
+      avg_views           Int?
+      availability_status String @default("available")
+      portfolio           Json?
+      niches              String[]
+      engagementRate      Float @default(0)
+      location            String?
+      pricePerPost        Int?
+      bio                 String?
+      embedding           Unsupported("vector(1536)")?
+      isVerified          Boolean @default(false)
+      savedBy             SavedInfluencer[]
+      updatedAt           DateTime @updatedAt
+
+      igUserId      String?
+      igAccessToken String?
+      igTokenExpiry DateTime?
+      igConnectedAt DateTime?
+
+      fbPageId   String?
+      fbPageName String?
+
+      @@map("influencer_profiles")
+    }
+
+
+model SavedInfluencer {
+  id           String            @id @default(cuid())
+  brandId      String
+  brand        User              @relation("SavedInfluencers", fields: [brandId], references: [id], onDelete: Cascade)
+  influencerId String
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  createdAt    DateTime          @default(now())
+
+  @@unique([brandId, influencerId])
+  @@index([brandId])
+  @@index([influencerId])
+}
+
+
+model ClientProfile {
+  id           String @id @default(cuid())
+  userId       String @unique
+  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company_name String?
+  industry     String?
+  rating       Float?
+  description  String?
+
+  @@map("client_profiles")
+}
+
+// Add to schema.prisma
+
+enum CampaignStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+enum CampaignType {
+  PAID_POST
+  STORY
+  REEL
+  YOUTUBE
+  TIKTOK
+  MULTI_PLATFORM
+}
+
+enum ApplicationStatus {
+  PENDING
+  SHORTLISTED
+  REJECTED
+  HIRED
+}
+
+model Campaign {
+  id               String           @id @default(uuid())
+  conversations   Conversation[]   @relation("ConversationCampaign")
+  brandId          String
+  reviews         Review[]         @relation("CampaignReviews")
+
+  brand            User             @relation("BrandCampaigns", fields: [brandId], references: [id])
+
+  contracts       Contract[]
+  
+
+  // Basic Info
+
+  title            String
+
+  description      String
+  type             CampaignType
+  status           CampaignStatus   @default(DRAFT)
+  campaignYoutubeVideos   CampaignYoutubeVideo[] // This matches the relation
+
+  // Budget
+  budgetMin        Float
+  budgetMax        Float
+  currency         String           @default("USD")
+
+  // Requirements
+  minFollowers     Int              @default(1000)
+  maxFollowers     Int?
+  platforms        String[]         // ["instagram", "facebook"]
+  niche            String[]         // ["fitness", "fashion"]
+  targetLocations  String[]         // ["India", "US"]
+  minEngagementRate Float?
+
+  // Deliverables
+  deliverables     String           // JSON string — e.g posts, stories count
+  contentGuidelines String?
+  hashtags         String[]
+  brandMentions    String[]
+
+  // Timeline
+  applicationDeadline DateTime
+  campaignStartDate   DateTime
+  campaignEndDate     DateTime
+
+  // Media
+  briefFileUrl     String?          // S3/Cloudinary URL
+  sampleContentUrl String?
+
+  // Stats
+  totalApplications Int             @default(0)
+  totalHired        Int             @default(0)
+  maxInfluencers    Int             @default(1)
+
+  applications     Application[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  mediaUrl  String?
+  mediaKey  String?
+
+  invites CampaignInvite[]
+
+  @@index([brandId])
+  @@index([status])
+  @@index([type])
+}
+
+model Application {
+  id             String            @id @default(uuid())
+  contracts      Contract[]       @relation(name: "ContractApplication")
+
+  campaignId       String
+  campaign         Campaign       @relation(fields: [campaignId], references: [id])
+  campaignYoutubeVideos CampaignYoutubeVideo[]
+  influencerId   String
+  influencer     User              @relation("InfluencerApplications", fields: [influencerId], references: [id])
+
+  status         ApplicationStatus @default(PENDING)
+  proposedRate   Float?            // Influencer ka quoted price
+  coverLetter    String?
+  portfolioUrls  String[]
+
+  // Brand response
+  brandNote      String?
+  reviewedAt     DateTime?
+ 
+  isFromInvite Boolean @default(false)
+ 
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@unique([campaignId, influencerId])  // Ek campaign mein ek hi baar apply
+  @@index([campaignId])
+  @@index([influencerId])
+  @@index([status])
+}
+
+
+
+// Add to schema.prisma
+
+enum ContractStatus {
+  DRAFT           // Brand ne banaya, influencer ko bheja nahi
+  SENT            // Brand ne bheja, influencer review kar raha hai
+  NEGOTIATING     // Influencer ne changes maange
+  ACTIVE          // Dono ne sign kiya
+  COMPLETED       // Sab milestones done
+  CANCELLED       // Kisi ne bhi cancel kiya
+  DISPUTED        // Koi issue hai
+}
+
+enum MilestoneStatus {
+  PENDING         // Abhi start nahi hua
+  IN_PROGRESS     // Influencer kaam kar raha hai
+  SUBMITTED       // Influencer ne submit kiya
+  REVISION_NEEDED // Brand ne revision maanga
+  APPROVED        // Brand ne approve kiya
+  PAID            // Payment release ho gayi
+}
+
+model Contract {
+  id               String         @id @default(uuid())
+  
+  payments         Payment[]
+  reviews          Review[]        @relation("ContractReviews")
+
+
+
+  // Relations
+  campaignId       String
+  campaign         Campaign       @relation(fields: [campaignId], references: [id])
+  brandId          String
+  brand            User           @relation("BrandContracts", fields: [brandId], references: [id])
+  influencerId     String
+  influencer       User           @relation("InfluencerContracts", fields: [influencerId], references: [id])
+  applicationId    String         @unique
+  application      Application    @relation(fields: [applicationId], references: [id], name: "ContractApplication")
+
+
+  // Contract Details
+  status           ContractStatus @default(DRAFT)
+  title            String
+  scope            String         // Kya deliver karna hai — full description
+  totalAmount      Float
+  currency         String         @default("INR")
+  platformFee      Float          @default(0)    // Platform ka commission %
+  influencerPayout Float                         // totalAmount - platformFee
+
+  // Timeline
+  startDate        DateTime
+  endDate          DateTime
+
+  // Terms
+  revisionLimit    Int            @default(2)
+  contentRights    String?        // Usage rights — e.g. brand can repost for 6 months
+  exclusivity      Boolean        @default(false)
+  exclusivityDays  Int?           // Agar exclusivity true hai toh kitne din
+
+  // Negotiation
+  negotiationNotes String?        // Influencer ke notes/requests
+  brandResponse    String?        // Brand ka reply
+
+  // Signing
+  brandSignedAt    DateTime?
+  influencerSignedAt DateTime?
+
+  // Cancel/Dispute
+  cancelledBy      String?
+  cancelReason     String?
+  disputeReason    String?
+
+  milestones       Milestone[]
+
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  documentUrl String?
+  documentKey String?
+
+  @@index([brandId])
+  @@index([influencerId])
+  @@index([campaignId])
+  @@index([status])
+}
+
+model Milestone {
+  id               String          @id @default(uuid())
+  contractId       String
+  contract         Contract        @relation(fields: [contractId], references: [id])
+
+  payments         Payment[]
+
+
+  // Details
+  title            String
+  description      String
+  amount           Float           // Is milestone ka payment
+  dueDate          DateTime
+  order            Int             // Sequence — 1, 2, 3...
+  status           MilestoneStatus @default(PENDING)
+
+  // Submission
+  submittedAt      DateTime?
+  submissionNote   String?
+  submissionUrls   String[]        // Content links — IG post, drive link etc
+  submissionKeys String[]  // for deletion
+
+
+  // Review
+  reviewedAt       DateTime?
+  revisionNote     String?         // Brand ka feedback
+  revisionCount    Int             @default(0)
+  approvedAt       DateTime?
+
+  // Payment
+  paidAt           DateTime?
+  paymentId        String?         // Payments module se link hoga
+
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+
+  @@index([contractId])
+  @@index([status])
+}
+
+// Add to schema.prisma
+
+enum PaymentProvider {
+  RAZORPAY
+  STRIPE
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum PayoutStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum PaymentType {
+  MILESTONE_PAYMENT   // Brand pays for milestone
+  PLATFORM_FEE        // Platform commission
+  REFUND              // Refund to brand
+}
+
+model Payment {
+  id                String          @id @default(uuid())
+
+  // Relations
+  contractId        String
+  contract          Contract        @relation(fields: [contractId], references: [id])
+  milestoneId       String          @unique
+  milestone         Milestone       @relation(fields: [milestoneId], references: [id])
+  brandId           String
+  brand             User            @relation("BrandPayments", fields: [brandId], references: [id])
+  influencerId      String
+  influencer        User            @relation("InfluencerPayments", fields: [influencerId], references: [id])
+
+  // Payment Details
+  type              PaymentType     @default(MILESTONE_PAYMENT)
+  provider          PaymentProvider
+  status            PaymentStatus   @default(PENDING)
+  currency          String          // INR or USD
+  totalAmount       Float           // Brand pays this
+  platformFee       Float           // Platform keeps this
+  influencerPayout  Float           // Influencer gets this
+
+  // Provider specific IDs
+  providerOrderId   String?         // Razorpay order_id / Stripe PaymentIntent id
+  providerPaymentId String?         // Razorpay payment_id / Stripe charge id
+  providerSignature String?         // Razorpay signature verification
+
+  // Payout tracking
+  payoutStatus      PayoutStatus    @default(PENDING)
+  payoutId          String?         // Razorpay payout_id / Stripe transfer id
+  payoutAt          DateTime?
+
+  // Refund
+  refundId          String?
+  refundReason      String?
+  refundedAt        DateTime?
+
+  completedAt       DateTime?
+  failureReason     String?
+
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([contractId])
+  @@index([brandId])
+  @@index([influencerId])
+  @@index([status])
+}
+
+// schema.prisma mein add karo
+
+model Conversation {
+  id           String    @id @default(cuid())
+  campaignId   String?
+  campaign     Campaign? @relation(fields: [campaignId], references: [id], name: "ConversationCampaign")
+
+  brandId      String
+  brand        User      @relation("BrandConversations", fields: [brandId], references: [id])
+  influencerId String
+  influencer   User      @relation("InfluencerConversations", fields: [influencerId], references: [id])
+  messages     Message[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([brandId, influencerId, campaignId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  senderId       String
+  sender         User         @relation("MessageSender", fields: [senderId], references: [id])
+  content        String?
+  fileUrl        String?
+  fileType       String?      // "image" | "pdf" | "doc"
+  fileName       String?
+  isRead         Boolean      @default(false)
+  readAt         DateTime?
+  createdAt      DateTime     @default(now())
+}
+
+// Notification table
+
+model Notification {
+  id         String           @id @default(cuid())
+  userId     String
+  user       User             @relation(fields: [userId], references: [id])
+  type       NotificationType
+  title      String
+  body       String
+  link       String?          // deep link — e.g. /campaigns/clx123
+  isRead     Boolean          @default(false)
+  readAt     DateTime?
+  meta       Json?            // extra context (campaignId, contractId, etc.)
+  createdAt  DateTime         @default(now())
+
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
+}
+
+model NotificationPreference {
+  id        String  @id @default(cuid())
+  userId    String  @unique
+  user      User    @relation(fields: [userId], references: [id])
+
+  // In-app toggles
+  inAppMessage    Boolean @default(true)
+  inAppCampaign   Boolean @default(true)
+  inAppContract   Boolean @default(true)
+  inAppPayment    Boolean @default(true)
+  inAppSystem     Boolean @default(false)
+
+  // Email toggles
+  emailDigest     Boolean @default(true)
+  emailPayment    Boolean @default(true)
+  emailContract   Boolean @default(true)
+  emailCampaign   Boolean @default(false)
+}
+
+enum NotificationType {
+  MESSAGE
+  CAMPAIGN
+  CONTRACT
+  PAYMENT
+  SYSTEM
+  REVIEW
+}
+model Review {
+  id           String     @id @default(cuid())
+  contractId   String
+  contract     Contract   @relation("ContractReviews", fields: [contractId], references: [id])
+  reviewerId   String
+  reviewer     User       @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  revieweeId   String
+  reviewee     User       @relation("ReviewsReceived", fields: [revieweeId], references: [id])
+  campaignId   String
+  campaign     Campaign   @relation("CampaignReviews", fields: [campaignId], references: [id])
+
+  rating       Int        // 1-5
+  body         String
+  tags         String[]   // ["Professional", "On-time", "Creative"]
+  reviewerRole ReviewerRole
+  helpfulCount Int        @default(0)
+  isVisible    Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+
+  @@unique([contractId, reviewerId]) // ek contract pe ek hi review per person
+  @@index([revieweeId])
+  @@index([campaignId])
+}
+
+enum ReviewerRole {
+  BRAND
+  INFLUENCER
+}
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  isRevoked Boolean  @default(false)
+
+  @@index([userId])
+  @@index([token])
+}
+
+model CampaignInvite {
+  id           String       @id @default(cuid())
+  campaignId   String
+  campaign     Campaign     @relation(fields: [campaignId], references: [id])
+  influencerId String
+  influencer   User         @relation("InvitesReceived", fields: [influencerId], references: [id])
+  brandId      String
+  brand        User         @relation("InvitesSent", fields: [brandId], references: [id])
+  status       InviteStatus @default(PENDING)
+  respondedAt  DateTime?
+  createdAt    DateTime     @default(now())
+
+  @@unique([campaignId, influencerId])
+  @@index([influencerId])
+  @@index([campaignId])
+}
+
+enum InviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}
+
+
+model YoutubeAccount {
+  id               String    @id @default(cuid())
+  influencerId     String    @unique
+  influencer       User      @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  // OAuth tokens (AES-256-GCM encrypted)
+  accessToken      String
+  refreshToken     String
+  tokenExpiresAt   DateTime
+
+  // Channel identity
+  channelId        String    @unique
+  channelTitle     String
+  channelHandle    String?   // @handle
+  channelThumb     String?
+  channelUrl       String?
+
+  // Channel stats (refreshed periodically)
+  subscribers      Int       @default(0)
+  totalViews       BigInt    @default(0)
+  videoCount       Int       @default(0)
+  avgViewsPerVideo Int       @default(0)
+  engagementRate   Float     @default(0)
+
+  // Sync metadata
+  lastSyncedAt     DateTime?
+  connectedAt      DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  videos           YoutubeVideo[]
+  campaignVideos   CampaignYoutubeVideo[]
+
+  @@index([influencerId])
+  @@map("youtube_accounts")
+}
+
+model YoutubeVideo {
+  id               String         @id @default(cuid())
+  accountId        String
+  account          YoutubeAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  videoId          String         @unique   // YT video ID
+  title            String
+  description      String?        @db.Text
+  thumbnail        String?
+  publishedAt      DateTime?
+  duration         String?        // ISO 8601 e.g. PT4M13S
+
+  // Stats snapshot (updated on sync)
+  viewCount        BigInt         @default(0)
+  likeCount        Int            @default(0)
+  commentCount     Int            @default(0)
+  estimatedMinutesWatched BigInt  @default(0)
+  averageViewDuration     Int     @default(0)  // seconds
+  averageViewPercentage   Float   @default(0)
+
+  syncedAt         DateTime       @default(now())
+
+  campaignVideos   CampaignYoutubeVideo[]
+
+  @@index([accountId])
+  @@index([publishedAt])
+  @@map("youtube_videos")
+}
+
+// Links a campaign deliverable to a specific YouTube video
+model CampaignYoutubeVideo {
+  id               String         @id @default(cuid())
+  campaignId       String
+  campaign         Campaign       @relation(fields: [campaignId], references: [id])
+
+  accountId        String
+  account          YoutubeAccount @relation(fields: [accountId], references: [id])
+  videoId          String
+  video            YoutubeVideo   @relation(fields: [videoId], references: [id])
+
+  // Snapshot at time of tracking (for historical comparison)
+  viewsAtTracking  BigInt         @default(0)
+  trackedAt        DateTime       @default(now())
+
+  applicationId String?
+  application   Application? @relation(fields: [applicationId], references: [id])
+  
+  // 2. Resolve the User (Influencer/Brand) relation
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+  
+
+  @@unique([campaignId, videoId])
+  @@map("campaign_youtube_videos")
+}
+
+// ─────────────────────────────────────────────────────────────
+// ADD to your existing schema.prisma
+// ─────────────────────────────────────────────────────────────
+
+enum AuditStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum RiskLevel {
+  LOW       // 0–20%  fake score  — safe to hire
+  MEDIUM    // 21–45% fake score  — proceed with caution
+  HIGH      // 46–70% fake score  — risky
+  CRITICAL  // 71–100% fake score — likely bought followers
+}
+
+model InfluencerAudit {
+  id              String      @id @default(cuid())
+  influencerId    String
+  influencer      User        @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  platform        String      // "instagram" | "youtube" | "twitter" | "all"
+  status          AuditStatus @default(PENDING)
+  triggeredBy     String?     // userId who triggered (admin or brand)
+
+  // Overall score
+  fakeScore       Float       @default(0)   // 0–100, higher = more fake
+  riskLevel       RiskLevel   @default(LOW)
+  authenticScore  Float       @default(100) // 100 - fakeScore
+
+  // Per-platform results (JSON)
+  platformResults Json?       // { instagram: {...}, youtube: {...}, twitter: {...} }
+
+  // Signal breakdown (stored for transparency)
+  signals         Json?       // array of { name, weight, score, detail }
+
+  // Recommendations
+  verdict         String?     // human-readable summary
+  flags           String[]    // ["low_engagement", "suspicious_growth", ...]
+
+  completedAt     DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([influencerId])
+  @@index([riskLevel])
+  @@index([fakeScore])
+  @@map("influencer_audits")
+}
+
+// ADD to existing User model:
+// audits   InfluencerAudit[]
+
