@@ -30,6 +30,10 @@ const app = express();
 const server = createServer(app); // ✅ pehle server banao
 const io = initSocket(server);    // ✅ phir socket attach karo
 
+app.get('/', (req, res) => {
+  res.status(200).send('Server is healthy and running!');
+});
+
 // Middleware
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 

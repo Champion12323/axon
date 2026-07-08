@@ -2,13 +2,13 @@ import jwt from 'jsonwebtoken';
 
 export function generateAccessToken(payload) {
   return jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN ?? '15m',
+    expiresIn: process.env.JWT_EXPIRES_IN ?? 15 * 60, // 15 minutes
   });
 }
 
 export function generateRefreshToken(payload) {
   return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN ?? '7d',
+    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN ?? 7 * 24 * 60 * 60, // 7 days
   });
 }
 
