@@ -16,7 +16,7 @@ import { Router } from 'express';
 import { authenticate } from '../middleware/authenticate.js';
 import authController from '../controllers/authController.js';
 import { validate } from '../middleware/validate.js';
-import { authSchemas } from '../schemas/authSchemas.js';
+import { authSchemas } from '../schemas/authschemas.js';
 import { rateLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
