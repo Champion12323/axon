@@ -23,7 +23,7 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import { setupProcessHandlers } from './middleware/errorHandler.js';
 import { initJobs } from './jobs/index.js';
 import youtubeRoutes from './routes/socialMedia/youtubeRoutes.js';
-import { startYoutubeSyncJob } from './jobs/youtubeSyncJob.js';
+import { startYoutubeSyncJob } from './jobs/YoutubeSyncJob.js';
 import auditRoutes from './routes/fakeDetection/auditRoutes.js';
 
 const app = express();
