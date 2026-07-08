@@ -7,7 +7,7 @@ import {
   verifyRefreshToken,
 } from "../utils/jwt.js";
 
-import { authSchemas } from "../schemas/authschemas.js";
+import { authSchemas } from "../schemas/authSchemas.js";
 
 //REGISTER
 
