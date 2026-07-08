@@ -35,8 +35,25 @@ app.get('/', (req, res) => {
 });
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+const allowedOrigins = [
+  'http://localhost:5173',          // Your local testing site
+  'https://axon-70a5c.web.app'       // Your live Firebase front-end website
+];
 
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, postman, or curl)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Allows cookies or authorization headers if you use them
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD']
+}));
 // ⚠️ Stripe webhook — raw body, specific path pehle
 app.use('/api/payments/webhook/stripe',
   express.raw({ type: 'application/json' }),
