@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  --axon-bg: #050414;
+  --axon-surface: #0b0a1f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--axon-bg);
+  color: white;
+}
+
+
+/* =========================
+   STAR TWINKLE
+========================= */
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-twinkle {
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+
+/* =========================
+   COMET
+   TOP-RIGHT → BOTTOM-LEFT
+========================= */
+
+@keyframes comet {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(135deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-900px, 900px, 0) rotate(135deg);
+    opacity: 0;
+  }
+}
+
+.animate-comet {
+  animation-name: comet;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.8),
+    0 0 15px rgba(168, 85, 247, 0.8),
+    0 0 30px rgba(139, 92, 246, 0.5);
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes vision-line {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(300%);
+    opacity: 0;
+  }
+}
+
+.animate-vision-line {
+  animation: vision-line 4s ease-in-out infinite;
+}
+
+
+/* Moving signal: India → Global */
+
+@keyframes vision-signal {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 92%;
+    opacity: 0;
+  }
+}
+
+.animate-vision-signal {
+  animation: vision-signal 4s ease-in-out infinite;
+}
+html {
+  scroll-behavior: smooth;
+}
