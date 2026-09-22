@@ -241,8 +241,8 @@ export default function Navbar() {
               />
 
               <img
-                src="/axon-logo2.png"
-                alt="AXON"
+                src="/axonnn-logo2.png"
+                alt="AXONNN"
                 className={`
                   relative z-10 w-auto object-contain
                   transition-all duration-500
@@ -389,7 +389,7 @@ export default function Navbar() {
 
                             <div>
                               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/35">
-                                Axon
+                                Axonnn
                               </p>
 
                               <p className="text-sm font-medium text-white/90">
@@ -863,7 +863,7 @@ export default function Navbar() {
                 />
 
                 <span className="relative">
-                  Join Axon
+                  Join axonnnnn
                 </span>
 
                 <ArrowRight

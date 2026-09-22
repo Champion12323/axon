@@ -117,7 +117,7 @@ const tools = [
   {
     icon: Zap,
     name: "Automation",
-    text: "Let Axon handle repetitive growth workflows.",
+    text: "Let axonnn handle repetitive growth workflows.",
     color: "pink",
   },
 ];
@@ -275,7 +275,7 @@ const openJoinModal = () => {
           </h1>
 
           <p className="mt-8 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
-            Axon connects creators, clippers and businesses through campaigns,
+            axonnn connects creators, clippers and businesses through campaigns,
             analytics, AI tools, automation and payments — all inside one
             intelligent ecosystem.
           </p>
@@ -285,7 +285,7 @@ const openJoinModal = () => {
               href="#ecosystem"
               className="group flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-black text-black transition hover:scale-105"
             >
-              Explore Axon
+              Explore axonnn
               <ArrowDown
                 size={17}
                 className="transition group-hover:translate-y-1"
@@ -309,7 +309,7 @@ const openJoinModal = () => {
             {/* Core */}
             <div className="absolute left-1/2 top-1/2 z-10 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-purple-600 to-indigo-700 shadow-[0_0_100px_rgba(139,92,246,0.45)] sm:h-36 sm:w-36">
               <div className="text-center">
-                <div className="text-3xl font-black tracking-tight">AXON</div>
+                <div className="text-3xl font-black tracking-tight">axonnn</div>
                 <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.3em] text-white/60">
                   intelligence
                 </div>
@@ -378,7 +378,7 @@ const openJoinModal = () => {
                     <div className="absolute left-1/2 top-full mt-2 w-40 -translate-x-1/2 rounded-2xl border border-white/10 bg-black/70 p-3 text-left text-[11px] text-white/60 backdrop-blur-2xl">
                       <div className="font-bold text-white">{node.name}</div>
                       <div className="mt-1">
-                        Connected to the Axon intelligence layer.
+                        Connected to the axonnn intelligence layer.
                       </div>
                     </div>
                   )}
@@ -407,7 +407,7 @@ const openJoinModal = () => {
               </h2>
 
               <p className="mt-6 max-w-md text-base leading-7 text-black/55">
-                Axon brings the entire creator-business relationship into one
+                axonnn brings the entire creator-business relationship into one
                 intelligent network.
               </p>
 
@@ -558,7 +558,7 @@ const openJoinModal = () => {
                 <div className="relative z-10">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-white/40">
-                      AXON / {currentService.id.toUpperCase()}
+                      axonnn / {currentService.id.toUpperCase()}
                     </span>
 
                     <div className="flex items-center gap-2 text-xs font-bold text-green-400">
@@ -612,7 +612,7 @@ const openJoinModal = () => {
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
-                Axon tools
+                axonnn tools
               </div>
 
               <h2 className="mt-5 text-5xl font-black leading-[0.95] tracking-[-0.04em] sm:text-7xl">
@@ -702,7 +702,7 @@ const openJoinModal = () => {
               <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
 
               <span className="ml-4 text-xs font-bold text-white/30">
-                axon://intelligence
+                axonnn://intelligence
               </span>
             </div>
 
@@ -717,7 +717,7 @@ const openJoinModal = () => {
                 </h3>
 
                 <p className="mt-3 max-w-xl text-sm leading-6 text-white/45">
-                  {tools[activeTool].text} Axon analyses your connected social
+                  {tools[activeTool].text} axonnn analyses your connected social
                   data and turns repetitive workflows into intelligent actions.
                 </p>
 
@@ -765,7 +765,7 @@ const openJoinModal = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <div className="text-xs font-black uppercase tracking-[0.3em] text-purple-600">
-              Axon intelligence
+              axonnn intelligence
             </div>
 
             <h2 className="mx-auto mt-5 max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-7xl">
@@ -775,7 +775,7 @@ const openJoinModal = () => {
             </h2>
 
             <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-black/50">
-              Axon doesn't just show you numbers. It helps you understand what
+              axonnn doesn't just show you numbers. It helps you understand what
               they mean and what you should do next.
             </p>
           </div>
@@ -976,7 +976,7 @@ const openJoinModal = () => {
                 <div className="my-5 h-20 w-px bg-black/20" />
 
                 <div className="text-xs font-black tracking-[0.3em] text-black/30">
-                  AXON
+                  axonnn
                 </div>
 
                 <ArrowRight className="my-5 hidden lg:block" size={30} />
@@ -1010,7 +1010,7 @@ const openJoinModal = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <div className="text-xs font-black uppercase tracking-[0.3em] text-purple-400">
-              The Axon flywheel
+              The axonnn flywheel
             </div>
 
             <h2 className="mx-auto mt-5 max-w-4xl text-5xl font-black leading-none tracking-[-0.05em] sm:text-7xl">
@@ -1027,7 +1027,7 @@ const openJoinModal = () => {
 
             <div className="absolute left-1/2 top-1/2 flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-purple-600 shadow-[0_0_100px_rgba(139,92,246,0.4)]">
               <div className="text-center">
-                <div className="text-2xl font-black">AXON</div>
+                <div className="text-2xl font-black">axonnn</div>
                 <div className="mt-1 text-[9px] font-bold tracking-[0.25em] text-white/50">
                   FLYWHEEL
                 </div>
@@ -1065,7 +1065,7 @@ const openJoinModal = () => {
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <div className="text-xs font-black uppercase tracking-[0.3em] text-black/30">
-              Inside Axon
+              Inside axonnn
             </div>
 
             <h2 className="mt-5 text-5xl font-black tracking-[-0.05em] sm:text-6xl">
@@ -1076,12 +1076,12 @@ const openJoinModal = () => {
           <div className="mt-12 space-y-3">
             {[
               [
-                "What is Axon?",
-                "Axon is an intelligent creator-economy platform connecting creators, clippers and businesses through discovery, campaigns, analytics, AI tools and payments.",
+                "What is axonnn?",
+                "axonnn is an intelligent creator-economy platform connecting creators, clippers and businesses through discovery, campaigns, analytics, AI tools and payments.",
               ],
               [
-                "Which platforms can connect to Axon?",
-                "Axon is designed around major social platforms such as Instagram, YouTube and Facebook, with platform-specific data powering a unified intelligence layer.",
+                "Which platforms can connect to axonnn?",
+                "axonnn is designed around major social platforms such as Instagram, YouTube and Facebook, with platform-specific data powering a unified intelligence layer.",
               ],
               [
                 "What can businesses do?",
@@ -1158,7 +1158,7 @@ const openJoinModal = () => {
                   <br />
                   grow with
                   <br />
-                  <span className="text-white/25">Axon?</span>
+                  <span className="text-white/25">axonnn?</span>
                 </h2>
               </div>
 
@@ -1171,7 +1171,7 @@ const openJoinModal = () => {
               >
                 <div>
                   <div className="text-sm font-black">
-                      JOIN AXON
+                      JOIN axonnn
                   </div>
                   <ArrowRight
                     className="mx-auto mt-2 transition group-hover:translate-x-2"
@@ -1190,7 +1190,7 @@ const openJoinModal = () => {
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-600 font-black">
                   <img
-                    src="/axon.png"
+                    src="/axonnn.png"
                     alt="AXON"
                     className="
                     rounded-full
@@ -1202,7 +1202,7 @@ const openJoinModal = () => {
                   />
                 </div>
 
-                <div className="text-xl font-black">axon</div>
+                <div className="text-xl font-black">axonnn</div>
               </div>
 
               <p className="mt-6 max-w-xs text-sm leading-6 text-white/35">
@@ -1317,7 +1317,7 @@ const openJoinModal = () => {
           </div>
 
           <div className="flex flex-col justify-between gap-3 py-7 text-[11px] font-bold text-white/20 sm:flex-row">
-            <span>© {new Date().getFullYear()} Axon. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} axonnn. All rights reserved.</span>
             <span>Creators • Clippers • Businesses • Intelligence</span>
           </div>
         </div>

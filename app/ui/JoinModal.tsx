@@ -285,8 +285,8 @@ export default function JoinModal({ onClose }: JoinModalProps) {
 
             <div className="relative z-20 p-9">
               <img
-                src="/axon-logo2.png"
-                alt="Axon"
+                src="/axonnn-logo2.png"
+                alt="axonnn"
                 className="h-16 w-auto object-contain"
               />
 
@@ -362,8 +362,8 @@ export default function JoinModal({ onClose }: JoinModalProps) {
             {/* PHONE */}
 
             <img
-              src="/axon-phone.png"
-              alt="Axon App"
+              src="/axonnn-phone.png"
+              alt="axonnn App"
               className="
                 absolute
                 bottom-[-205px]
@@ -497,7 +497,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
 
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[2px] text-gray-400">
-                    Join Axon
+                    Join axonnnnn
                   </p>
 
                   <p className="text-sm font-bold text-gray-700">
@@ -875,7 +875,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
 
                 <div className="flex items-center gap-1.5 text-[10px] font-medium text-gray-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Axon is live
+                  axonnn is live
                 </div>
               </div>
             </div>

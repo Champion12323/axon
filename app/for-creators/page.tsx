@@ -226,7 +226,7 @@ export default function ForCreatorsPage() {
           <div>
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-sm font-bold text-purple-200 backdrop-blur">
               <Sparkles className="h-4 w-4" />
-              AXON FOR CREATORS
+              axonnn FOR CREATORS
             </div>
 
             <h1 className="max-w-4xl text-6xl font-black leading-[.9] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
@@ -285,7 +285,7 @@ export default function ForCreatorsPage() {
             <div className="absolute -right-4 top-16 z-20 hidden w-48 rotate-3 rounded-3xl border border-cyan-300/30 bg-[#111020]/90 p-4 shadow-2xl backdrop-blur-xl sm:block">
               <div className="flex items-center gap-2 text-xs font-bold text-white/50">
                 <Sparkles className="h-4 w-4 text-cyan-300" />
-                AXON MATCH
+                axonnn MATCH
               </div>
               <div className="mt-2 text-3xl font-black text-cyan-300">
                 96%
@@ -412,7 +412,7 @@ export default function ForCreatorsPage() {
               </h2>
 
               <p className="mt-7 max-w-xl text-lg leading-8 text-black/55">
-                Axon matches creators with campaigns based on niche,
+                axonnn matches creators with campaigns based on niche,
                 audience, content style, location and performance —
                 not just follower count.
               </p>
@@ -423,7 +423,7 @@ export default function ForCreatorsPage() {
                     <Sparkles className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-black">Axon Smart Matching</p>
+                    <p className="font-black">axonnn Smart Matching</p>
                     <p className="text-xs text-white/40">
                       Your profile → right opportunities
                     </p>
@@ -623,7 +623,7 @@ export default function ForCreatorsPage() {
 
                   <div>
                     <p className="text-xs font-black tracking-widest text-yellow-300">
-                      AXON INTELLIGENCE
+                      axonnn INTELLIGENCE
                     </p>
 
                     <p className="mt-3 text-lg font-bold leading-7">
@@ -773,7 +773,7 @@ export default function ForCreatorsPage() {
               </h2>
 
               <p className="mt-7 max-w-xl text-lg leading-8 text-white/50">
-                Axon turns your performance data into useful
+                axonnn turns your performance data into useful
                 recommendations instead of making you stare at
                 charts.
               </p>
@@ -786,7 +786,7 @@ export default function ForCreatorsPage() {
 
                   <div>
                     <p className="font-black">
-                      ✦ Axon found a pattern
+                      ✦ axonnn found a pattern
                     </p>
 
                     <p className="mt-3 text-lg font-bold leading-7">
@@ -935,7 +935,7 @@ export default function ForCreatorsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="text-sm font-black tracking-[.25em] text-yellow-300">
-              AXON CREATOR SCORE
+              axonnn CREATOR SCORE
             </div>
 
             <h2 className="mt-5 text-5xl font-black tracking-[-0.05em] sm:text-7xl">
@@ -1127,7 +1127,7 @@ export default function ForCreatorsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="text-sm font-black tracking-[.25em] text-cyan-300">
-              THE AXON FLYWHEEL
+              THE axonnn FLYWHEEL
             </div>
 
             <h2 className="mt-5 text-5xl font-black tracking-[-0.05em] sm:text-7xl">
@@ -1189,7 +1189,7 @@ export default function ForCreatorsPage() {
           </h2>
 
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-black/50">
-            Join Axon, discover campaigns built for your audience and
+            Join Axonnn, discover campaigns built for your audience and
             use real data to become a stronger creator.
           </p>
 

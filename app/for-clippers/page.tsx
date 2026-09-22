@@ -187,7 +187,7 @@ export default function ForClippersPage() {
 
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-black tracking-[0.15em] text-purple-300">
               <Scissors size={14} />
-              AXON FOR CLIPPERS
+              axonnn FOR CLIPPERS
             </div>
 
             <h1 className="max-w-4xl text-6xl font-black leading-[0.88] tracking-[-0.06em] md:text-8xl">
@@ -207,7 +207,7 @@ export default function ForClippersPage() {
             <p className="mt-8 max-w-xl text-lg font-medium leading-8 text-white/55">
               Find high-value clipping campaigns, transform long-form content
               into short-form videos and build a recurring income stream with
-              Axon.
+              axonnn.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-4">
@@ -283,7 +283,7 @@ export default function ForClippersPage() {
                 <div className="absolute left-5 right-5 top-7 flex justify-between">
 
                   <span className="rounded-full bg-black/30 px-3 py-1 text-[9px] font-black backdrop-blur">
-                    AXON CLIP
+                    axonnn CLIP
                   </span>
 
                   <span className="rounded-full bg-red-500 px-3 py-1 text-[9px] font-black">
@@ -429,7 +429,7 @@ export default function ForClippersPage() {
                     </p>
 
                     <p className="mt-1 text-xs text-white/40">
-                      Axon finds campaigns that fit your style.
+                      axonnn finds campaigns that fit your style.
                     </p>
                   </div>
 
@@ -622,7 +622,7 @@ export default function ForClippersPage() {
               number="01"
               icon={<SearchIcon />}
               title="Find"
-              text="Choose a campaign from the Axon marketplace."
+              text="Choose a campaign from the axonnn marketplace."
             />
 
             <WorkflowCard
@@ -643,7 +643,7 @@ export default function ForClippersPage() {
               number="04"
               icon={<Upload />}
               title="Publish"
-              text="Post your clips and submit them to Axon."
+              text="Post your clips and submit them to axonnn."
             />
 
             <WorkflowCard
@@ -689,7 +689,7 @@ export default function ForClippersPage() {
               </h2>
 
               <p className="mt-7 max-w-lg text-base font-medium leading-7 text-white/45">
-                Axon tracks the performance of your submitted clips and
+                axonnn tracks the performance of your submitted clips and
                 connects results to campaign rewards and bonuses.
               </p>
 
@@ -973,7 +973,7 @@ export default function ForClippersPage() {
               icon={<Star />}
               number="01"
               title="Build your score"
-              text="Your clip quality, consistency and campaign performance help build your Axon Clipper Score."
+              text="Your clip quality, consistency and campaign performance help build your axonnn Clipper Score."
               bg="bg-yellow-100"
               iconBg="bg-yellow-400"
             />
@@ -982,7 +982,7 @@ export default function ForClippersPage() {
               icon={<TrendingUp />}
               number="02"
               title="Unlock better campaigns"
-              text="As your performance improves, Axon can surface higher-value opportunities that match your skills."
+              text="As your performance improves, axonnn can surface higher-value opportunities that match your skills."
               bg="bg-emerald-100"
               iconBg="bg-emerald-400"
             />
@@ -1031,7 +1031,7 @@ export default function ForClippersPage() {
               </h2>
 
               <p className="mt-7 max-w-md text-base font-medium leading-7 text-black/50">
-                Axon keeps campaign requirements, submissions, performance and
+                axonnn keeps campaign requirements, submissions, performance and
                 earnings visible throughout the clipping process.
               </p>
 
@@ -1096,7 +1096,7 @@ export default function ForClippersPage() {
           </h2>
 
           <p className="mx-auto mt-7 max-w-xl text-base font-medium leading-7 text-white/40">
-            Join Axon and start discovering clipping opportunities built for
+            Join axonnn and start discovering clipping opportunities built for
             your editing skills.
           </p>
 
@@ -1108,7 +1108,7 @@ export default function ForClippersPage() {
             }}
             className="mt-9 inline-flex items-center gap-3 rounded-2xl bg-white px-7 py-4 text-sm font-black text-black transition hover:-translate-y-1 hover:shadow-2xl"
           >
-            Become an Axon Clipper
+            Become an axonnn Clipper
             <ArrowRight size={17} />
           </a>
 
@@ -1211,7 +1211,7 @@ export default function ForClippersPage() {
                     </p>
 
                     <p className="mt-2 text-sm font-medium leading-6 text-black/50">
-                      Axon matched this campaign with your editing style,
+                      axonnn matched this campaign with your editing style,
                       category and previous performance.
                     </p>
 

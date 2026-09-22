@@ -171,7 +171,7 @@ export default function ForBusinessesPage() {
           <div>
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-blue-300">
               <Sparkles size={14} />
-              AXON FOR BUSINESSES
+              axonnn FOR BUSINESSES
             </div>
 
             <h1 className="max-w-4xl text-6xl font-black leading-[0.9] tracking-[-0.06em] sm:text-7xl lg:text-[88px]">
@@ -289,7 +289,7 @@ export default function ForBusinessesPage() {
 
                   <div>
                     <p className="text-xs font-black uppercase tracking-wider text-yellow-300">
-                      Axon Intelligence
+                      axonnn Intelligence
                     </p>
 
                     <p className="mt-2 text-sm leading-6 text-white/75">
@@ -336,7 +336,7 @@ export default function ForBusinessesPage() {
                 <span className="block text-blue-600">Start matching.</span>
               </>
             }
-            description="Axon's creator discovery engine helps businesses find creators based on audience fit, niche, location, engagement, campaign goals and budget."
+            description="axonnn's creator discovery engine helps businesses find creators based on audience fit, niche, location, engagement, campaign goals and budget."
           />
 
           <div className="mt-16 grid gap-8 lg:grid-cols-[360px_1fr]">
@@ -781,7 +781,7 @@ export default function ForBusinessesPage() {
       </section>
 
       {/* =====================================================
-          AXON INTELLIGENCE
+          axonnn INTELLIGENCE
       ===================================================== */}
 
       <section className="relative z-10 bg-[#090815] py-28">
@@ -791,7 +791,7 @@ export default function ForBusinessesPage() {
               <div>
                 <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-yellow-300 px-4 py-2 text-xs font-black uppercase tracking-wider text-black">
                   <Sparkles size={14} />
-                  AXON INTELLIGENCE
+                  axonnn INTELLIGENCE
                 </div>
 
                 <h2 className="text-5xl font-black leading-[0.95] tracking-tight lg:text-7xl">
@@ -802,7 +802,7 @@ export default function ForBusinessesPage() {
                 </h2>
 
                 <p className="mt-7 max-w-xl text-lg leading-8 text-white/55">
-                  Axon doesn't just show your campaign data. It helps you
+                  axonnn doesn't just show your campaign data. It helps you
                   understand which creators, content and audiences are
                   actually driving results.
                 </p>
@@ -902,7 +902,7 @@ export default function ForBusinessesPage() {
                 />
 
                 <ComparisonRow
-                  label="Axon Match"
+                  label="axonnn Match"
                   values={["96%", "94%", "91%"]}
                   highlight
                 />
@@ -1018,7 +1018,7 @@ export default function ForBusinessesPage() {
 
               <div className="mt-5 rounded-2xl bg-purple-50 p-5">
                 <p className="text-xs font-black uppercase tracking-wider text-purple-600">
-                  Axon recommendation
+                  axonnn recommendation
                 </p>
 
                 <p className="mt-2 text-sm font-bold leading-6 text-black/65">
@@ -1045,7 +1045,7 @@ export default function ForBusinessesPage() {
       <section className="relative z-10 bg-[#f7f7f8] py-28 text-black">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <SectionHeading
-            eyebrow="THE AXON BUSINESS LOOP"
+            eyebrow="THE axonnn BUSINESS LOOP"
             title={
               <>
                 One platform.
@@ -1114,7 +1114,7 @@ export default function ForBusinessesPage() {
               </h2>
 
               <p className="mt-7 max-w-xl text-lg leading-8 text-white/50">
-                Keep your best-performing creators inside Axon and build a
+                Keep your best-performing creators inside axonnn and build a
                 reliable network for future campaigns.
               </p>
 
@@ -1178,7 +1178,7 @@ export default function ForBusinessesPage() {
 
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-black/50">
             Find creators. Launch campaigns. Measure results. Scale what
-            works with Axon.
+            works with axonnn.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -1250,7 +1250,7 @@ export default function ForBusinessesPage() {
                 value={selectedCreator.reach}
               />
               <ModalStat
-                label="Axon Match"
+                label="axonnn Match"
                 value={`${selectedCreator.match}%`}
               />
             </div>
