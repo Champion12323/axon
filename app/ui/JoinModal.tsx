@@ -12,7 +12,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { FaInstagram } from  "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 type Role = "creator" | "clipper" | "business";
 
@@ -64,7 +64,26 @@ export default function JoinModal({ onClose }: JoinModalProps) {
 
   const current = roleData[role];
   const RoleIcon = current.icon;
+  const sendWhatsApp = () => {
+    const cleanPhone = phone.replace(/\D/g, "");
 
+    if (cleanPhone.length !== 10) {
+      alert("Please enter a valid 10-digit number");
+      return;
+    }
+
+    const whatsappNumber = `91${cleanPhone}`;
+
+    const message = `Hi! 👋
+          Here is the Axon app link:
+          https://axonnn.com/download
+
+          Join Axon and start growing 🚀`;
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.location.href = whatsappUrl;
+  };
   return (
     <>
       {/* BACKDROP */}
@@ -330,7 +349,6 @@ export default function JoinModal({ onClose }: JoinModalProps) {
               >
                 Your creator
                 <br />
-
                 <span
                   className="
                     bg-gradient-to-r
@@ -354,8 +372,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
                   text-gray-500
                 "
               >
-                One platform to discover, collaborate, create, measure and
-                grow.
+                One platform to discover, collaborate, create, measure and grow.
               </p>
             </div>
 
@@ -417,9 +434,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
                     Connected platform
                   </p>
 
-                  <p className="text-xs font-bold text-gray-800">
-                    Instagram
-                  </p>
+                  <p className="text-xs font-bold text-gray-800">Instagram</p>
                 </div>
               </div>
             </div>
@@ -457,9 +472,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
                 </div>
 
                 <div>
-                  <p className="text-[10px] text-gray-400">
-                    Growth
-                  </p>
+                  <p className="text-[10px] text-gray-400">Growth</p>
 
                   <p className="text-xs font-bold text-gray-800">
                     Tracking active
@@ -627,10 +640,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
 
                       {active && (
                         <div className="absolute right-3 top-3">
-                          <Check
-                            size={13}
-                            className={data.text}
-                          />
+                          <Check size={13} className={data.text} />
                         </div>
                       )}
                     </button>
@@ -721,6 +731,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
                     hover:scale-[1.02]
                     hover:shadow-[0_10px_30px_rgba(124,58,237,0.3)]
                   "
+                  onClick={sendWhatsApp}
                 >
                   Send Link
                   <ArrowRight size={14} />
@@ -842,9 +853,7 @@ export default function JoinModal({ onClose }: JoinModalProps) {
                       Download on
                     </p>
 
-                    <p className="text-sm font-bold text-gray-800">
-                      App Store
-                    </p>
+                    <p className="text-sm font-bold text-gray-800">App Store</p>
                   </div>
                 </div>
 
