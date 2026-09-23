@@ -75,10 +75,10 @@ export default function JoinModal({ onClose }: JoinModalProps) {
     const whatsappNumber = `91${cleanPhone}`;
 
     const message = `Hi! 👋
-          Here is the Axon app link:
-          https://axonnn.com/download
+Here is the Axon app link:
+https://axonnn.com/download
 
-          Join Axon and start growing 🚀`;
+Join Axon and start growing 🚀`;
 
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
